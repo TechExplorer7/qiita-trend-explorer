@@ -1,0 +1,38 @@
+services:
+  backend:
+    container_name: qiitapick_backend
+    image: node:20
+    working_dir: /workspace
+    tty: true
+    depends_on:
+      - db
+    ports:
+      - 8000:8000
+    volumes:
+      - ../:/workspace
+    networks:
+      - qiitapick_backend
+
+  db:
+    container_name: qiitapick_db
+    image: mysql:8
+    restart: always
+    ports:
+      - 3306:3306
+    environment:
+      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+      - MYSQL_HOST=${MYSQL_HOST}
+      - MYSQL_USER=${MYSQL_USER}
+      - MYSQL_PASSWORD=${MYSQL_PASSWORD}
+      - MYSQL_DATABASE=${MYSQL_DATABASE}
+    volumes:
+      - ./db/conf.d:/etc/mysql/conf.d
+      - ./db/data:/var/lib/mysql
+    networks:
+      - qiitapick_backend
+
+volumes:
+  qiitapick_mysql:
+
+networks:
+  qiitapick_backend:

@@ -1,0 +1,14 @@
+{
+  "name": "QittaPick Backend Devcontainer",
+  "dockerComposeFile": ["docker-compose.yml"],
+  "service": "backend",
+  "workspaceFolder": "/workspace",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "shardulm94.trailing-spaces",
+        "esbenp.prettier-vscode"
+      ]
+    }
+  }
+}
